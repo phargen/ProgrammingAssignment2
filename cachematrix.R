@@ -1,11 +1,16 @@
-## Define a special "object" that is a matrix with cached inverse
+## These two methods work together to create and use a special extended version 
+## of matrix that caches the calculated value of the inverse and returns the 
+## cached value on successive calls to the method, without having to go through 
+## the sometimes costly routine of re-calculating the matrix.
+
+## Define a special "object" that is a matrix with the special ability to 
+##  store, or cache, the computed inverse
 ## CacheMatrix is created by cm <- makeCacheMatrix()
 ## CacheMatrix is set by e.g. cm$set(matrix(c(1,2,0,-1), 2, 2))
 ## CacheMatrix is retrieved by e.g. cm$get()
 ## CacheMatrix is solved for it's inverse by cm$getinverse()
-
-## Makes a special matrix that cache's the value when calculated
-## Optionally can pass in created matrix() with values
+## Optionally can pass in created matrix() with values instead of using the 
+##  <obj>$set(...) method
 makeCacheMatrix <- function(x = matrix()) {
     inv <- NULL
     set <- function(y) {
